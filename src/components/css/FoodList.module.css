@@ -1,0 +1,56 @@
+.foodListContainer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .foodListTitle {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .foodList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .foodItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .foodDetails {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .foodName {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .editButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .editButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Additional styling for EditFoodForm can go here or in its own CSS module */
+  
