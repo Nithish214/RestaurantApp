@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Add this line
+import { useAuth } from './AuthContext';
 import './LoginPage.css'; // Assume you have a separate CSS file for styling
 
-const LoginPage = ({ onLoginSuccess }) => {
+const LoginPage = () => { // Removed the unused prop { onLoginSuccess }
+    const { login } = useAuth();
+    const navigate = useNavigate(); // Correctly initialized useNavigate hook
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -11,22 +14,32 @@ const LoginPage = ({ onLoginSuccess }) => {
         event.preventDefault();
         setError('');
 
-        try {
-            // Replace with your API endpoint
-            const response = await axios.post('http://localhost:2000/auth/login', { username, password });
-            // Handle the response accordingly
-            if (response.data.success) {
-                onLoginSuccess(response.data.token); // You could pass the token to a handler
-            } else {
-                setError('Invalid credentials.');
-            }
-        } catch (err) {
-            // Handle the error accordingly
-            setError('Login failed.');
-            console.error('Login error:', err);
+        // Using hardcoded credentials for demonstration purposes
+        const DEFAULT_USERNAME = 'admin';
+        const DEFAULT_PASSWORD = 'password';
+
+        // Simplified login logic for demonstration
+        if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+            login(); // Update authentication state
+            navigate('/food'); // Redirect to the food list page upon successful login
+        } else {
+            setError('Invalid credentials.'); // Display error message for incorrect credentials
         }
     };
-
+        // try {
+        //     // Replace with your API endpoint
+        //     const response = await axios.post('http://localhost:2000/auth/login', { username, password });
+        //     // Handle the response accordingly
+        //     if (response.data.success) {
+        //         onLoginSuccess(response.data.token); // You could pass the token to a handler
+        //     } else {
+        //         setError('Invalid credentials.');
+        //     }
+        // } catch (err) {
+        //     // Handle the error accordingly
+        //     setError('Login failed.');
+        //     console.error('Login error:', err);
+        // }
     return (
         <div className="login-container">
             <form onSubmit={handleLogin} className="login-form">

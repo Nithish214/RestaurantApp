@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditFoodForm from './EditFoodForm'; // Make sure this import path is correct
+import EditFoodForm from './EditFoodForm'; 
+import Navbar from '../HomePage/Navbar';
 import styles from './css/FoodList.module.css';
 function FoodList() {
     const [foods, setFoods] = useState([]);
-    const [editFoodId, setEditFoodId] = useState(null); // ID of the food to edit
+    const [editFoodId, setEditFoodId] = useState(null); 
     const [forceUpdate, setForceUpdate] = useState(false);
     useEffect(() => {
         const fetchFoods = async () => {
@@ -23,12 +24,14 @@ function FoodList() {
         setFoods(currentFoods =>
             currentFoods.map(food => food._id === updatedFood._id ? updatedFood : food)
         );
-        setEditFoodId(null); // Reset editing state
-        setForceUpdate(f => !f); // Toggle to force re-render
+        setEditFoodId(null); 
+        setForceUpdate(f => !f); 
+        console.log(forceUpdate);
     };
 
     return (
         <div className={styles.foodListContainer}>
+          <Navbar />
           <h2 className={styles.foodListTitle}>Food Items</h2>
           <ul className={styles.foodList}>
             {foods.map((food) => (
